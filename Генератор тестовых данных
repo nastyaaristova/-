@@ -1,0 +1,30 @@
+import random
+import math
+
+repetitions = random.randint(10, 30)
+
+def session_data(repetitions):
+    data = []
+    
+    for i in range(repetitions):
+        pulse = random.randint(60, 90)
+        controller_angle = random.randrange(60)
+        executor_angle = controller_angle + random.randint(-10, 10)
+        delay = random.randint(50, 80)
+        spo2 = random.randint(95, 99)
+        for finger in ["thumb", "index", "middle", "ring", "pinky"]:
+            data.append({
+                "палец": finger,
+                "повторения": i,
+                "пульс": pulse + random.randint(-5, 5),
+                "SpO2": spo2 + random.randint(-1, 1),
+                "угол контроллера": controller_angle + random.randint(-5, 5),
+                "угол исполнителя": executor_angle + random.randint(-5, 5),
+                "задержка": delay + random.randint(-20, 20)
+            })
+        data.append({})
+    return data
+
+session = session_data(repetitions)
+for i in session:
+    print(i)
